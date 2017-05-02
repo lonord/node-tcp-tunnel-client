@@ -1,7 +1,7 @@
 # node-tcp-tunnel-client
 A tcp tunnel service of node.js powered by [Socket.io](https://socket.io) (client side)
 
-client side is [here](https://github.com/lonord/node-tcp-tunnel-server)
+server side is [here](https://github.com/lonord/node-tcp-tunnel-server)
 
 This service is used for port forwarding between different computers.
 
