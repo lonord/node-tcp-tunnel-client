@@ -2,7 +2,7 @@ const debug = require('debug')('tunnel:client');
 const events = require('./event');
 const config = require('./config');
 const ClientHandler = require('./client-handler');
-const socket = require('socket.io-client')(config.service.wsUrl);
+const socket = require('socket.io-client')(config.serviceUrl);
 
 let clientHandler;
 
@@ -37,4 +37,9 @@ socket.on(events.DISCONNECTED, pack => {
 socket.on(events.DATA, pack => {
 	debug('socket.on DATA');
 	clientHandler && clientHandler.handleMsgData(pack);
+});
+socket.on(events.sys.ERROR, msg => {
+	debug('socket.on sys.ERROR');
+	console.log(`Error: ${msg}`);
+	process.exit(1);
 });
