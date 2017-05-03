@@ -2,8 +2,9 @@ const debug = require('debug')('tunnel:client');
 const events = require('./event');
 const ClientHandler = require('./client-handler');
 const socketIO = require('socket.io-client');
+const md5 = require('js-md5');
 
-module.exports = function (serviceUrl, remotePort, localPort) {
+module.exports = function (serviceUrl, username, password, remotePort, localPort) {
 	const socket = socketIO(serviceUrl);
 	let clientHandler;
 
@@ -12,7 +13,11 @@ module.exports = function (serviceUrl, remotePort, localPort) {
 		if (clientHandler) {
 			clientHandler.removeAllListeners();
 		}
-		socket.emit(events.sys.REMOTE_PORT, remotePort);
+		socket.emit(events.sys.INIT, {
+			port: remotePort,
+			username: username,
+			password: md5(password)
+		});
 		clientHandler = new ClientHandler(localPort);
 		clientHandler.on(events.DISCONNECTED, pack => {
 			debug('clientHandler.on DISCONNECTED');

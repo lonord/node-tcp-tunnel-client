@@ -22,6 +22,8 @@ Such as `http://example.com:13000'`.
 - *`pairs`* An array of pair contains the port forwarding.
 - *`localPort`* The port of local computer to be forwarding.
 - *`remotePort`* The port of server computer to forwarding local port.
+- *`username`* The user name for authorization.
+- *`password`* The password for authorization.
 
 ## License
 MIT
