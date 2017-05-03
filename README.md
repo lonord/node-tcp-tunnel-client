@@ -19,6 +19,7 @@ Some custom configure can be modify in `config.js`
 - *`serviceUrl`* the websocket url of server side. Format is `http://YOUR_HOST_NAME:YOUR_PORT`.
 The port is one which specified in config file of server side. 
 Such as `http://example.com:13000'`.
+- *`pairs`* An array of pair contains the port forwarding.
 - *`localPort`* The port of local computer to be forwarding.
 - *`remotePort`* The port of server computer to forwarding local port.
 
