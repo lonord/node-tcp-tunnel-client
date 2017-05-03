@@ -1,22 +1,22 @@
 const debug = require('debug')('tunnel:client-handler');
 const events = require('./event');
-const config = require('./config');
 const net = require('net');
 const EventEmitter = require('events');
 
 const HOST = '127.0.0.1';
 
 class ClientHandler extends EventEmitter {
-	constructor() {
+	constructor(localPort) {
 		super();
 		this.servers = {};
+		this.localPort = localPort;
 	}
 
 	handleMsgConnect(pack) {
 		let id = pack.id;
 		if (id) {
 			let server = new net.Socket();
-			server.connect(config.localPort, HOST, this.localConnected.bind(this, id, server));
+			server.connect(this.localPort, HOST, this.localConnected.bind(this, id, server));
 			server.on('close', this.localDisconnected.bind(this, id));
 			server.on('data', this.localData.bind(this, id));
 			this.servers[id] = server;

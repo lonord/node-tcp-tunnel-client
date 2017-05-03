@@ -4,7 +4,7 @@
   "description": "A tcp tunnel service of node.js (client side)",
   "main": "index.js",
   "scripts": {
-    "start": "node client.js",
+    "start": "node index.js",
     "dev": "DEBUG=tunnel:* node client.js"
   },
   "keywords": [
